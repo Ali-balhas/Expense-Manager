@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Expense {
+public class Expense implements CSVFormatter{
     String category ;
     double amount ;
     LocalDate date ;
@@ -22,6 +22,16 @@ public class Expense {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    @Override
+    public String csvFormat(){
+        return category + " , " + amount + " , " + date ;
+    }
+
+    @Override
+    public Expense readCsv(String line){
+        return Validator.validateExpense(line);
     }
 
     @Override
